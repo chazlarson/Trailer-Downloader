@@ -121,13 +121,13 @@ def downloadFile(url, destdir, filename):
     except URLError as error:
         return
     try:
-        with open(filename, 'wb') as local_file_handle:
+        with open(os.path.split(os.path.abspath(__file__))[0]+'/'+filename, 'wb') as local_file_handle:
             shutil.copyfileobj(server_file_handle, local_file_handle, chunk_size)
     except socket.error as error:
         return
 
     # Move downloaded trailer to directory
-    shutil.move(filename, destdir+'/'+filename)
+    shutil.move(os.path.split(os.path.abspath(__file__))[0]+'/'+filename, destdir+'/'+filename)
 
 # Download from Apple
 def appleDownload(page_url, res, destdir, filename):
@@ -169,7 +169,7 @@ def youtubeDownload(video, min_resolution, max_resolution, title, year, director
         'ignore_warnings': 'TRUE',
         'ignore_errors': 'TRUE',
         'no_playlist': 'TRUE',
-        'outtmpl': filename
+        'outtmpl': os.path.split(os.path.abspath(__file__))[0]+'/'+filename
     }
 
     try:
@@ -179,7 +179,7 @@ def youtubeDownload(video, min_resolution, max_resolution, title, year, director
         # Move downloaded trailer to directory
         if not os.path.exists(directory):
             os.makedirs(directory)
-        shutil.move(filename, directory+'/'+filename)
+        shutil.move(os.path.split(os.path.abspath(__file__))[0]+'/'+filename, directory+'/'+filename)
         return file
     except:
         return False
