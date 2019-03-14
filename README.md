@@ -1,5 +1,5 @@
 # Trailer-Downloader
-Simple set of python scripts for downloading a movie trailer from Apple or from YouTube with help from TMDB. For quality purposes, the scripts will always attempt to download a trailer from Apple before falling back to TMDB and YouTube. This is useful if you are running a media server like Plex and you would like to have local trailers for each of your movies.
+Simple set of python scripts for downloading a movie trailer from Apple or from YouTube with help from TMDB. For quality purposes, the scripts will always attempt to download a trailer from Apple before falling back to TMDB and YouTube. This is useful if you are running a media server like Plex and you would like to have local trailers for each of your local movies.
 
 ## Requirements
 -[Python 2.7+](https://www.python.org/)
