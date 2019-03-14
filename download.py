@@ -4,9 +4,8 @@ import os
 import json
 import shutil
 import socket
+import sys
 import unicodedata
-import tmdbsimple as tmdb
-import youtube_dl
 
 # Python 3.0 and later
 try:
@@ -18,6 +17,20 @@ try:
 except ImportError:
     from ConfigParser import *
     from urllib2 import *
+
+# tmdbsimple
+try:
+    import tmdbsimple as tmdb
+except:
+    print('\033[91mERROR:\033[0m tmdbsimple is not installed.')
+    sys.exit()
+
+# youtube_dl
+try:
+    import youtube_dl
+except:
+    print('\033[91mERROR:\033[0m youtube_dl is not installed.')
+    sys.exit()
 
 # Arguments
 def getArguments():
@@ -224,7 +237,10 @@ def main():
 
             # Search YouTube for trailer
             if not downloaded:
-                search = searchTMDB(arguments['title'], settings['api_key'])
+                try:
+                    search = searchTMDB(arguments['title'], settings['api_key'])
+                except:
+                    print('\033[91mERROR:\033[0m Failed to connect to TMDB. Check your api key.')
 
                 # Iterate over search results
                 for result in search['results']:
